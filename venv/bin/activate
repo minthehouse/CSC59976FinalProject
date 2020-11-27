@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/juniornorabuena/Desktop/OneDrive/Desktop/JuniorCS/csc59976_fall20/BuddyWheels_FinalProject/venv"
+VIRTUAL_ENV="/Users/juniornorabuena/Desktop/OneDrive/Desktop/JuniorCS/csc59976_fall20/CSC59976FinalProject/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
