@@ -24,6 +24,13 @@ def home():
 def about():
     return render_template('about.html', title='About')
 
+@app.route("/services")
+def services():
+    return render_template('services.html', title='Services')
+
+@app.route("/contact_us")
+def contact():
+    return render_template('contact.html', title='Contact')
 
 @app.route("/su")
 def su():
