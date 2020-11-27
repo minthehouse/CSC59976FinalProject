@@ -207,3 +207,13 @@ footer {
 .btn-floating{
   color: #428bca;
 }
+
+.btn-outline-info {
+  color: rgb(25, 82, 136);
+  border-color: rgb(25, 82, 136);
+}
+
+.btn-outline-info:Hover {
+  color: white;
+  background: rgb(25, 82, 136);
+}
