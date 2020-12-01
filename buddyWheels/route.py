@@ -24,6 +24,10 @@ def home():
 def about():
     return render_template('about.html', title='About')
 
+@app.route("/map")
+def map():
+    return render_template('map.html', title='Map')
+
 @app.route("/services")
 def services():
     return render_template('services.html', title='Services')

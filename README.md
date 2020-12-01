@@ -9,4 +9,5 @@
 - pip install Flask-Mail
 - pip install Flask-WTF
 - pip install email-validator
+- pip install Pillow
 '''
