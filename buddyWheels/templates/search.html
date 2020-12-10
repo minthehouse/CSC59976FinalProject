@@ -3,13 +3,15 @@
 
 {% for i in range(10) %}
 
+<br>
+
 <article class="media">
   <figure class="media-left">
     <p class="image is-64x64">
-      <img src= {{business_data['businesses'][i]['image_url']}} style="height: 64px; width: 64px;">
+      <img src= {{business_data['businesses'][i]['image_url']}} style="height: 64px; width: 64px; margin-top: 10px;">
     </p>
   </figure>
-  <div class="media-content">
+  <div class="media-content" style="margin-left: 15px;">
     <div class="content">
       <p>
         <strong>{{ business_data['businesses'][i]['name'] }}</strong>

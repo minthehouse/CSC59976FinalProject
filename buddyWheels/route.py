@@ -28,8 +28,8 @@ def home():
 def about():
     return render_template('about.html', title='About')
 
-@app.route("/map", methods=['GET', 'POST'])
-def map():
+@app.route("/search", methods=['GET', 'POST'])
+def search():
     API_KEY = 'APPkzjieslVnhZkXzIBZUkjk5LEohlL9JgzKiyIkaSdo8nHluBI9aJSwnYopRg8_dEq9wlKGW65AHZK4IODId2KCQ_XLJp18-Wne7fnUxWKWus99NY8_SZyBkkLRX3Yx'
     ENDPOINT = 'https://api.yelp.com/v3/businesses/search?attributes=wheelchair_accessible'
     HEADERS = {'Authorization': 'bearer %s' % API_KEY}
@@ -47,7 +47,7 @@ def map():
     business_data = response.json()
     #names = business_data['businesses']
     
-    return render_template('map.html', title='Search', business_data=business_data )
+    return render_template('search.html', title='Search', business_data=business_data )
 
 
 @app.route("/services")
