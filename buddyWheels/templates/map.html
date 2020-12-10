@@ -1,6 +1,61 @@
 {%extends "layout.html"%}
 {%block content%}
-<div class="container">
+
+{% for i in range(10) %}
+
+<article class="media">
+  <figure class="media-left">
+    <p class="image is-64x64">
+      <img src= {{business_data['businesses'][i]['image_url']}} style="height: 64px; width: 64px;">
+    </p>
+  </figure>
+  <div class="media-content">
+    <div class="content">
+      <p>
+        <strong>{{ business_data['businesses'][i]['name'] }}</strong>
+        <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+      </p>
+    </div>
+    <nav class="level is-mobile">
+      <div class="level-left">
+        <a class="level-item">
+          <span class="icon is-small"><i class="fas fa-reply"></i></span>
+        </a>
+        <a class="level-item">
+          <span class="icon is-small"><i class="fas fa-retweet"></i></span>
+        </a>
+        <a class="level-item">
+          <span class="icon is-small"><i class="fas fa-heart"></i></span>
+        </a>
+      </div>
+    </nav>
+  </div>
+  <div class="media-right">
+    <button class="delete"></button>
+  </div>
+</article>
+{% endfor %}
+
+{%endblock%}
+
+
+<!--
+<body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Search Result</h1>
+      <h2 class="subtitle">
+        A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
+      </h2>
+      {% for i in range(10) %}
+      <li>{{ business_data['businesses'][i]['name'] }}</li>
+      {% endfor %}
+    </div>
+  </section>
+</body>
+-->
+
 <!--
     <p>type places to go!     {{ business_data['name']}}</p>
         <input class="form-control" id="anythingSearch" type="text" placeholder="Type something to search list items">
@@ -16,10 +71,11 @@
       </div>
 -->
 
+
+
+
 <!-- only printing the name of restaurants using the api response for now-->
-{% for i in range(10) %}
- <p>{{ business_data['businesses'][i]['name'] }}</p>
-{% endfor %}
-  </div>
-{%endblock%}
+
+
+
 
