@@ -8,15 +8,18 @@
 
 
 
-    <p>Your city?</p>
+       <p>Your city?</p>
         <input class="form-control" id="anythingSearch" type="text" placeholder="Type something to search list items">
         <div id="myDIV">
             <div>I am a div element inside div.</div>
       <button class="btn btn-info">search</button>
-    </div>
+      </div>
 -->
 
-<!-- only printing the name of restaurant using the api response -->
-<p> {{ business_data['businesses'][0]['name'] }} </p> 
+<!-- only printing the name of restaurants using the api response for now-->
+{% for i in range(10) %}
+ <p>{{ business_data['businesses'][i]['name'] }}</p>
+{% endfor %}
   </div>
 {%endblock%}
+
