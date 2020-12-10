@@ -10,6 +10,9 @@ from flask_login import login_user, current_user, logout_user, login_required, A
 from flask_mail import Message
 import requests
 import json
+from yelpapi import YelpAPI
+
+
 
 @app.route("/")
 def default():
@@ -32,14 +35,16 @@ def map():
     HEADERS = {'Authorization': 'bearer %s' % API_KEY}
     #define the parameters
     PARAMETERS = {'term': 'restaurant',
-                'limit': 1,
+                'limit': 2,
                 'radius': 10000,
                 'location': 'ny'}
     response = requests.get(url = ENDPOINT, params = PARAMETERS, headers = HEADERS)
-
+    #name_response = response['business']['name']
     # convert the JSON string to a dictionary
-    #business_data = response.json()
-    return render_template('map.html', title='Search', business_data=response.json())
+    business_data = response.json()
+    #names = business_data['businesses']
+    
+    return render_template('map.html', title='Search', business_data=business_data )
 
 
 @app.route("/services")
