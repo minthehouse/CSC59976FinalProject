@@ -8,7 +8,8 @@ from buddyWheels.forms import RegistrationForm, LoginForm, RequestResetForm, Res
 from buddyWheels.models import User
 from flask_login import login_user, current_user, logout_user, login_required, AnonymousUserMixin
 from flask_mail import Message
-
+import requests
+import json
 
 @app.route("/")
 def default():
@@ -24,9 +25,22 @@ def home():
 def about():
     return render_template('about.html', title='About')
 
-@app.route("/map")
+@app.route("/map", methods=['GET', 'POST'])
 def map():
-    return render_template('map.html', title='Map')
+    API_KEY = 'APPkzjieslVnhZkXzIBZUkjk5LEohlL9JgzKiyIkaSdo8nHluBI9aJSwnYopRg8_dEq9wlKGW65AHZK4IODId2KCQ_XLJp18-Wne7fnUxWKWus99NY8_SZyBkkLRX3Yx'
+    ENDPOINT = 'https://api.yelp.com/v3/businesses/search?attributes=wheelchair_accessible'
+    HEADERS = {'Authorization': 'bearer %s' % API_KEY}
+    #define the parameters
+    PARAMETERS = {'term': 'restaurant',
+                'limit': 1,
+                'radius': 10000,
+                'location': 'ny'}
+    response = requests.get(url = ENDPOINT, params = PARAMETERS, headers = HEADERS)
+
+    # convert the JSON string to a dictionary
+    #business_data = response.json()
+    return render_template('map.html', title='Search', business_data=response.json())
+
 
 @app.route("/services")
 def services():
