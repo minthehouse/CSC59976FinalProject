@@ -50,6 +50,24 @@ def search():
     return render_template('search.html', title='Search', business_data=business_data )
 
 
+
+
+@app.route("/detail")
+def detail():
+    API_KEY = 'APPkzjieslVnhZkXzIBZUkjk5LEohlL9JgzKiyIkaSdo8nHluBI9aJSwnYopRg8_dEq9wlKGW65AHZK4IODId2KCQ_XLJp18-Wne7fnUxWKWus99NY8_SZyBkkLRX3Yx'
+    ENDPOINT = 'https://api.yelp.com/v3/businesses/search?attributes=wheelchair_accessible'
+    HEADERS = {'Authorization': 'bearer %s' % API_KEY}
+    
+    destination = request.form.get('destination', False)
+    return render_template('detail.html', title='Detail')
+    
+
+
+
+
+
+
+
 @app.route("/services")
 def services():
     return render_template('services.html', title='Services')
@@ -179,7 +197,6 @@ def reset_token(token):
         flash('Your password has been updated! You are now able to log in', 'success')
         return redirect(url_for('login'))
     return render_template('reset_token.html', title='Reset Password', form=form)
-
 
 
 

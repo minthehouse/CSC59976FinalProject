@@ -9,9 +9,9 @@
                                <h1>BUDDY WHEELS</h1>
                                <div class="border-top border-primary w-50 mx-auto my-2"></div>
                                <h3 class="pb-3">Find place you'll like.....</h3>
-                                <form action="/map" method="post">
+                                <form action="/search" method="post">
                                     <label for="input_destination"> your destination </label>
-                                    <input name= "destination" class="form-control" id="input_destination" type="text" placeholder="TYPE ANYWHERE YOU WANT TO GO">                               <a href="{{ url_for('map') }}" class="btn btn-primary btn-lg ml-2">View map</a>
+                                    <input name= "destination" class="form-control" id="input_destination" type="text" placeholder="TYPE ANYWHERE YOU WANT TO GO">                               <a href="{{ url_for('search') }}" class="btn btn-primary btn-lg ml-2">Search</a>
 
                                 </form>
                            </div>

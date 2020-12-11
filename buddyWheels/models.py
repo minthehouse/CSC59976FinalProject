@@ -3,6 +3,12 @@ import datetime
 from flask_login import UserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
+from flask import request
+import json
+from yelpapi import YelpAPI
+
+
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -35,4 +41,29 @@ class User(db.Model, UserMixin):
 
 
 
+'''
+class yelp_api():
+    
+    API_KEY = 'APPkzjieslVnhZkXzIBZUkjk5LEohlL9JgzKiyIkaSdo8nHluBI9aJSwnYopRg8_dEq9wlKGW65AHZK4IODId2KCQ_XLJp18-Wne7fnUxWKWus99NY8_SZyBkkLRX3Yx'
+    ENDPOINT = 'https://api.yelp.com/v3/businesses/search?attributes=wheelchair_accessible'
+    HEADERS = {'Authorization': 'bearer %s' % API_KEY}
+    
+    destination = request.form.get('destination', False)
 
+    #define the parameters
+    PARAMETERS = {'term': destination,
+                'limit': 10,
+                'radius': 10000,
+                'location': 'ny'}
+    def search(self):
+
+        response = requests.get(url = ENDPOINT, params = PARAMETERS, headers = HEADERS)
+        #name_response = response['business']['name']
+        # convert the JSON string to a dictionary
+        business_data = response.json()
+        #names = business_data['businesses']
+        
+        return render_template('search.html', title='Search', business_data=business_data )
+
+
+'''
