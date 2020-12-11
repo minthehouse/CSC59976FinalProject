@@ -51,7 +51,6 @@ def search():
 
 
 
-
 @app.route("/detail")
 def detail():
     API_KEY = 'APPkzjieslVnhZkXzIBZUkjk5LEohlL9JgzKiyIkaSdo8nHluBI9aJSwnYopRg8_dEq9wlKGW65AHZK4IODId2KCQ_XLJp18-Wne7fnUxWKWus99NY8_SZyBkkLRX3Yx'
@@ -61,7 +60,6 @@ def detail():
     destination = request.form.get('destination', False)
     return render_template('detail.html', title='Detail')
     
-
 
 
 
