@@ -11,6 +11,8 @@ from flask_mail import Message
 import requests
 import json
 from yelpapi import YelpAPI
+import googlemaps
+from datetime import datetime
 
 
 
@@ -56,9 +58,15 @@ def detail():
     API_KEY = 'APPkzjieslVnhZkXzIBZUkjk5LEohlL9JgzKiyIkaSdo8nHluBI9aJSwnYopRg8_dEq9wlKGW65AHZK4IODId2KCQ_XLJp18-Wne7fnUxWKWus99NY8_SZyBkkLRX3Yx'
     ENDPOINT = 'https://api.yelp.com/v3/businesses/search?attributes=wheelchair_accessible'
     HEADERS = {'Authorization': 'bearer %s' % API_KEY}
+
+    gmaps = googlemaps.Client(key = 'AIzaSyCcCcw-1jwiB-59cdvWO0aSp4Is78MDt-s')
+    geocode_result = gmaps.geocode('1520 amsterdam ave, New york, NY')
+    now = datetime.now()
+    directions_result = gmaps.directions("1520 amsterdam ave, NY", "1600 Convent Ave, NY",mode = "driving", departure_time=now)
     
+
     destination = request.form.get('destination', False)
-    return render_template('detail.html', title='Detail')
+    return render_template('detail.html', title='Detail', direction_result = directions_result)
     
 
 

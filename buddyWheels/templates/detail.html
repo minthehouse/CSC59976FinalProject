@@ -9,9 +9,48 @@
     <section class="Detail page">
       <div class="container">
         <h1 class="title">Section</h1>
+
         <h2 class="subtitle">
           blah blah ...  <strong>like restaurant</strong>
         </h2>
+        <head>
+    <title>Add Map</title>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcCcw-1jwiB-59cdvWO0aSp4Is78MDt-s&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <style type="text/css">
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+      }
+    </style>
+    <script>
+      // Initialize and add the map
+      function initMap() {
+        // The location of Uluru
+        const NYstate = { lat: 40.7128, lng: -74.0060 };
+        // The map, centered at Uluru
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4,
+          center: NYstate,
+        });
+        // The marker, positioned at Uluru
+        const marker = new google.maps.Marker({
+          position: NYstate,
+          map: map,
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <h3>My Google Maps Demo</h3>
+    <!--The div element for the map -->
+    <div id="map"></div>
+  </body>
       </div>
     </section>
   </body>
