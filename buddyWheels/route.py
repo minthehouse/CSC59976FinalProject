@@ -37,9 +37,9 @@ def search():
     HEADERS = {'Authorization': 'bearer %s' % API_KEY}
     
     destination = request.form.get('destination', False)
-
+    zipcode = request.form.get('zipcode', False)
     #define the parameters
-    PARAMETERS = {'term': destination,
+    PARAMETERS = {'term': destination+zipcode,
                 'limit': 10,
                 'radius': 10000,
                 'location': 'ny'}

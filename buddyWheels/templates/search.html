@@ -17,11 +17,10 @@
         {% set business_url = business_data['businesses'][i]["id"] %}
         <a href="{{ url_for('business', business_id= business_url) }}">
         <strong>{{ business_data['businesses'][i]['name'] }}</strong>
-          <h1>{{business_url}}</h1>
         </a>
       </p>
-      <p>Star Rating {{ business_data['businesses'][i]["rating"] }}</p>
-      {{ business_data['businesses'][i]["location"]["address1"] }}
+       <p>Star Rating: {{ business_data['businesses'][i]["rating"] }}</p>
+       <p>location: {{ business_data['businesses'][i]["location"]["address1"]}}</p>
 
     </div>
     <nav class="level is-mobile">
