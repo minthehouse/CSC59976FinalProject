@@ -14,12 +14,15 @@
   <div class="media-content" style="margin-left: 15px;">
     <div class="content">
       <p>
-        <a href='/detail'>
+        {% set business_url = business_data['businesses'][i]["id"] %}
+        <a href="{{ url_for('business', business_id= business_url) }}">
         <strong>{{ business_data['businesses'][i]['name'] }}</strong>
+          <h1>{{business_url}}</h1>
         </a>
-        <br>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
       </p>
+      <p>Star Rating {{ business_data['businesses'][i]["rating"] }}</p>
+      {{ business_data['businesses'][i]["location"]["address1"] }}
+
     </div>
     <nav class="level is-mobile">
       <div class="level-left">
