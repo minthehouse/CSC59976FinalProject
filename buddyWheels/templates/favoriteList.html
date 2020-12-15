@@ -3,9 +3,45 @@
 
 
 
-{% for i in favorite_list %}
-    {% set counter = ( counter | default(0) ) + 1 %}
-    {{ favorite_list[counter].business_name}}
+<h1 style="text-align: center;">Your Favorite List</h1>
+<br>
+
+{% for business in favorite_list %}
+
+<hr>
+<article class="media">
+    <figure class="media-left">
+      <p class="image is-64x64" >
+        <img src="{{business.image_url}}" style="width: 65px; height: 65px";>
+      </p>
+    </figure>
+    <div class="media-content" style="margin-left: 15px; align-content: center;">
+      <div class="content">
+        <p>
+          <strong>        
+            Name: {{business.business_name}}<br>
+            Address: {{business.address}}<br>
+            Rating: {{business.rating}}<br>
+           </strong> 
+        </p>
+      </div>
+      <nav class="level is-mobile">
+        <div class="level-left">
+          <a class="level-item">
+            <span class="icon is-small"><i class="fas fa-reply"></i></span>
+          </a>
+          <a class="level-item">
+            <span class="icon is-small"><i class="fas fa-retweet"></i></span>
+          </a>
+          <a class="level-item">
+            <span class="icon is-small"><i class="fas fa-heart"></i></span>
+          </a>
+        </div>
+      </nav>
+    </div>
+
+  </article>
+
 {% endfor %}
 
 
