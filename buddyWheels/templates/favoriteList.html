@@ -1,9 +1,13 @@
 {%extends "layout.html"%}
 {%block content%}
 
-    {{favorite_list}}
-<hr>
-    {{favorite_list[1]}}
-<hr>
-    {{favorite_list[0]}}
+
+
+{% for i in favorite_list %}
+    {% set counter = ( counter | default(0) ) + 1 %}
+    {{ favorite_list[counter].business_name}}
+{% endfor %}
+
+
+
 {%endblock%}
