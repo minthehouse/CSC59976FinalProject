@@ -60,16 +60,15 @@
     <script>
       // Initialize and add the map
       function initMap() {
-        // The location of Uluru
-        const NYstate = { lat: 40.7128, lng: -74.0060 };
+        const business_location = { lat: {{business_info["coordinates"]["latitude"] }}, lng: {{business_info["coordinates"]["longitude"] }} };
         // The map, centered at Uluru
         const map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 4,
-          center: NYstate,
+          zoom: 15,
+          center: business_location,
         });
         // The marker, positioned at Uluru
         const marker = new google.maps.Marker({
-          position: NYstate,
+          position: business_location,
           map: map,
         });
       }
