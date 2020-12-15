@@ -41,8 +41,8 @@ def search():
     #define the parameters
     PARAMETERS = {'term': destination+zipcode,
                 'limit': 10,
-                'radius': 10000,
-                'location': 'ny'}
+                'radius': 100
+                }
     response = requests.get(url = ENDPOINT, params = PARAMETERS, headers = HEADERS)
     #name_response = response['business']['name']
     # convert the JSON string to a dictionary
@@ -59,7 +59,7 @@ def business(business_id):
 
     response = requests.get(url=ENDPOINT, headers=HEADERS)
     business_info = response.json()
-    
+
 
     return render_template('business.html', title='Business', business_info=business_info)
 
