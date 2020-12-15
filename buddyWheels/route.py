@@ -54,21 +54,12 @@ def search():
 @app.route("/search/<business_id>")
 def business(business_id):
     API_KEY = 'APPkzjieslVnhZkXzIBZUkjk5LEohlL9JgzKiyIkaSdo8nHluBI9aJSwnYopRg8_dEq9wlKGW65AHZK4IODId2KCQ_XLJp18-Wne7fnUxWKWus99NY8_SZyBkkLRX3Yx'
-    ENDPOINT = 'https://api.yelp.com/v3/businesses/' + business_id
+    ENDPOINT = 'https://api.yelp.com/v3/businesses/{}'.format(business_id)
     HEADERS = {'Authorization': 'bearer %s' % API_KEY}
 
-    destination = request.form.get('destination', False)
-
-    # define the parameters
-    PARAMETERS = {'term': destination,
-                  'limit': 1,
-                  'radius': 10000,
-                  'location': 'ny'}
-    response = requests.get(url=ENDPOINT, params=PARAMETERS, headers=HEADERS)
-    # name_response = response['business']['name']
-    # convert the JSON string to a dictionary
+    response = requests.get(url=ENDPOINT, headers=HEADERS)
     business_info = response.json()
-    # names = business_data['businesses']
+
 
     return render_template('business.html', title='Business', business_info=business_info)
 
