@@ -3,12 +3,13 @@
     <section class="Detail page">
       <div class="container">
         <h2 class="title" style="text-align: center;"> {{ business_info["name"] }}</h2><br>
-        <h4> business category:{{ business_info["categories"][0].title  }} </h4>
-        <h4> business address: {{ business_info["location"]["display_address"][0]}}, {{ business_info["location"]["display_address"][1]}} </h4> 
-        <h4>phone:  {{business_info["phone"] }}</h4>
+
+        <h4> Business Category: {{ business_info["categories"][0].title  }} </h4> 
+        <h4> Business Address: {{ business_info["location"]["display_address"][0]}}, {{ business_info["location"]["display_address"][1]}} </h4> 
+        <h4>Phone Number:  {{business_info["phone"] }}</h4>
 
           <br>
-          <h3>Operation Hours</h3>
+          <h3>Operation Hours:</h3>
           {% for i in range(7) %}
               
             {% if business_info["hours"][0].open[i].day == 0 %}
@@ -92,6 +93,7 @@
               }
             </script>
         </head>
+
       </div>
     </section>
 {%endblock%}
