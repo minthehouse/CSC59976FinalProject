@@ -30,6 +30,12 @@ def home():
 def about():
     return render_template('about.html', title='About')
 
+@app.route("/favoriteList", methods=['GET'])
+@login_required
+def favoriteList():
+    favorite_list = FavoritePlaces.query.filter_by(user_info=current_user.username).all()
+    return render_template('favoriteList.html', title='FavoriteList', favorite_list=favorite_list)
+
 @app.route("/search", methods=['GET', 'POST'])
 def search():
     API_KEY = 'APPkzjieslVnhZkXzIBZUkjk5LEohlL9JgzKiyIkaSdo8nHluBI9aJSwnYopRg8_dEq9wlKGW65AHZK4IODId2KCQ_XLJp18-Wne7fnUxWKWus99NY8_SZyBkkLRX3Yx'
@@ -187,6 +193,7 @@ def account():
         form.username.data = current_user.username
         form.email.data = current_user.email
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+
     return render_template('account.html', title='Account',
                            image_file=image_file, form=form)
 
