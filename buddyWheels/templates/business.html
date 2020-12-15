@@ -3,9 +3,10 @@
 <body>
     <section class="Detail page">
       <div class="container">
-        <h1 class="title">{{ business_info["name"] }}</h1><br>
-        <h3> business category:{{ business_info["categories"][0].title  }} </h3> 
-        <h3> business address: {{ business_info["location"]["display_address"][0]}}, {{ business_info["location"]["display_address"][1]}}    </h3> 
+        <h2 class="title" style="text-align: center;"> {{ business_info["name"] }}</h2><br>
+        <h4> business category:{{ business_info["categories"][0].title  }} </h4> 
+        <h4> business address: {{ business_info["location"]["display_address"][0]}}, {{ business_info["location"]["display_address"][1]}} </h4> 
+        <h4>phone:  {{business_info["phone"] }}</h4>
 
           <br>
           <h3>Operation Hours</h3>
@@ -37,11 +38,6 @@
 
 
           <br>
-
-          <br>
-
-          phone:  {{business_info["phone"] }}
-
         <head>
     <title>Add Map</title>
     <script
