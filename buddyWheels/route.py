@@ -59,7 +59,7 @@ def business(business_id):
 
     response = requests.get(url=ENDPOINT, headers=HEADERS)
     business_info = response.json()
-
+    
 
     return render_template('business.html', title='Business', business_info=business_info)
 
