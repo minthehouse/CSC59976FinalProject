@@ -5,7 +5,7 @@ import datetime
 from flask import render_template, url_for, flash, redirect, request, abort
 from buddyWheels import app, db, bcrypt, mail
 from buddyWheels.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, UpdateAccountForm
-from buddyWheels.models import User
+from buddyWheels.models import User, FavoritePlaces
 from flask_login import login_user, current_user, logout_user, login_required, AnonymousUserMixin
 from flask_mail import Message
 import requests
@@ -39,10 +39,10 @@ def search():
     destination = request.form.get('destination', False)
     zipcode = request.form.get('zipcode', False)
     #define the parameters
-    PARAMETERS = {'term': destination+zipcode,
+    PARAMETERS = {'term': destination,
                 'limit': 10,
                 'radius': 10000,
-                'location': 'ny'}
+                'location': zipcode}
     response = requests.get(url = ENDPOINT, params = PARAMETERS, headers = HEADERS)
     #name_response = response['business']['name']
     # convert the JSON string to a dictionary
@@ -61,6 +61,25 @@ def business(business_id):
     business_info = response.json()
 
 
+    return render_template('business.html', title='Business', business_info=business_info)
+
+
+@app.route("/search/<business_id>/addToFavorites", methods=['GET', 'POST'])
+@login_required
+def addToFavorites(business_id):
+    API_KEY = 'APPkzjieslVnhZkXzIBZUkjk5LEohlL9JgzKiyIkaSdo8nHluBI9aJSwnYopRg8_dEq9wlKGW65AHZK4IODId2KCQ_XLJp18-Wne7fnUxWKWus99NY8_SZyBkkLRX3Yx'
+    ENDPOINT = 'https://api.yelp.com/v3/businesses/{}'.format(business_id)
+    HEADERS = {'Authorization': 'bearer %s' % API_KEY}
+
+    response = requests.get(url=ENDPOINT, headers=HEADERS)
+    business_info = response.json()
+
+    new_place = FavoritePlaces(id=business_info["id"], user_info=current_user.username, business_name=business_info["name"],
+                               address=business_info["location"]["address1"], rating=business_info["rating"],
+                               image_url=business_info['image_url'])
+    db.session.add(new_place)
+    db.session.commit()
+    flash(business_info["name"] + ' was added to your favorite places list.','success')
     return render_template('business.html', title='Business', business_info=business_info)
 
 

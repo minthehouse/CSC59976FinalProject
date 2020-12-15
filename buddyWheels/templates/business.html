@@ -1,10 +1,9 @@
 {%extends "layout.html"%}
 {%block content%}
-<body>
     <section class="Detail page">
       <div class="container">
         <h2 class="title" style="text-align: center;"> {{ business_info["name"] }}</h2><br>
-        <h4> business category:{{ business_info["categories"][0].title  }} </h4> 
+        <h4> business category:{{ business_info["categories"][0].title  }} </h4>
         <h4> business address: {{ business_info["location"]["display_address"][0]}}, {{ business_info["location"]["display_address"][1]}} </h4> 
         <h4>phone:  {{business_info["phone"] }}</h4>
 
@@ -35,61 +34,64 @@
             {% endif %}
 
           {% endfor %}
-
-
+        <br>
+          <a href="#" data-toggle="modal" data-target="#approveModal">Add to favorites</a>
           <br>
+      </div>
+    {% set business_id = business_info["id"] %}
+    <div class="modal fade" id="approveModal" tabindex="-1" role="dialog" aria-labelledby="approveModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="approveModalLabel">Do you want to add it to you favorite places list?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <form action="{{ url_for('addToFavorites', business_id=business_id) }}">
+              <input class="btn btn-success" type="submit" value="Add to Favorites">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <div>
+            <h3>My Google Map</h3>
+              <!--The div element for the map -->
+            <div id="map"></div>
+
         <head>
-    <title>Add Map</title>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcCcw-1jwiB-59cdvWO0aSp4Is78MDt-s&callback=initMap&libraries=&v=weekly"
-      defer
-    ></script>
-    <style type="text/css">
-      /* Set the size of the div element that contains the map */
-      #map {
-        height: 400px;
-        /* The height is 400 pixels */
-        width: 100%;
-        /* The width is the width of the web page */
-      }
-    </style>
-    <script>
-      // Initialize and add the map
-      function initMap() {
-        const business_location = { lat: {{business_info["coordinates"]["latitude"] }}, lng: {{business_info["coordinates"]["longitude"] }} };
-        // The map, centered at Uluru
-        const map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 15,
-          center: business_location,
-        });
-        // The marker, positioned at Uluru
-        const marker = new google.maps.Marker({
-          position: business_location,
-          map: map,
-        });
-      }
-    </script>
-  </head>
-  <body>
-    <h3>My Google Maps Demo</h3>
-    <!--The div element for the map -->
-    <div id="map"></div>
-  </body>
+            <style type="text/css">
+              /* Set the size of the div element that contains the map */
+              #map {
+                height: 400px;
+                /* The height is 400 pixels */
+                width: 100%;
+                /* The width is the width of the web page */
+                  padding-bottom: 100px;
+              }
+            </style>
+
+            <script>
+              // Initialize and add the map
+              function initMap() {
+                const business_location = { lat: {{business_info["coordinates"]["latitude"] }}, lng: {{business_info["coordinates"]["longitude"] }} };
+                // The map, centered at Uluru
+                const map = new google.maps.Map(document.getElementById("map"), {
+                  zoom: 15,
+                  center: business_location,
+                });
+                // The marker, positioned at Uluru
+                const marker = new google.maps.Marker({
+                  position: business_location,
+                  map: map,
+                });
+              }
+            </script>
+        </head>
       </div>
     </section>
-  </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 {%endblock%}

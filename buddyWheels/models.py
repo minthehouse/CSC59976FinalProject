@@ -38,7 +38,16 @@ class User(db.Model, UserMixin):
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
 
+class FavoritePlaces(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_info = db.Column(db.String(100), db.ForeignKey('user.username'), nullable=False)
+    business_name = db.Column(db.String, nullable=False)
+    address = db.Column(db.String, nullable=False)
+    rating = db.Column(db.Integer, nullable=False)
+    image_url = db.Column(db.String, nullable=False)
 
+    def __repr__(self):
+        return f"FavoritePlaces('{self.business_name}', '{self.address}', '{self.rating}')"
 
 
 '''
